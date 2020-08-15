@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>子传父组件-显示和隐藏</title>
+    <script src="../lib/vue.js"></script>
+
+    <style></style>
+  </head>
+  <body>
+    <div id="box">
+      <btn @myevent="handleEvent">点击</btn>
+      <ulli v-show="isShow"></ulli>
+    </div>
+    <script>
+      Vue.component("btn", {
+        template: `<button @click="handlbtn">点击</button>`,
+        methods: {
+          handlbtn() {
+            this.$emit("myevent");
+          },
+        },
+      });
+
+      Vue.component("ulli", {
+        template: `
+        <ul style="list-style-type: none;">
+          <li style="color: #FF1758;">123</li>
+          <li style="color: #97B27F;">456</li>
+          <li style="color: #9FC630;">789</li>
+        </ul>`,
+      });
+
+      new Vue({
+        el: "#box",
+        data: {
+          isShow: false,
+        },
+        methods: {
+          handleEvent() {
+            this.isShow = !this.isShow;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+.getElementById()：根据元素的id来获取对象
+.getElementsByTagName()：根据元素的标签名字获取标签所有的对象
+.getElementsByClassName()：根据类名获取某些元素集合
+
+.querySelector()：返回指定选择器的第一个元素
+.querySelectorAll()：返回指定选择器的所有元素对象集合
+
+获取特殊元素（body,html）
+获取body元素
+    doucumnet.body  //返回body元素对象
+
+获取html元素
+    doucumnet.doucumnetElement  //返回html元素对象
+
+
+事件是由三部分组成的：（事件三要素）
+    1.事件源
+    2.事件类型
+    3.事件处理程序
+
+<html>
+    <head></head>
+    <body>
+        <button id='btn'>按钮</button>
+    </body>
+    <script>
+        （1）事件源 事件被触发的对象
+        var btn = document.getElementById('btn')
+
+        （2）事件类型 如何触发 什么事件 比如鼠标点击（onclick）还是鼠标经过 还是键盘按下
+        （3）事件处理程序 通过一个函数赋值的方式来完成 
+        btn.onclick = function(){ 
+            alert('111')
+        }
+    </script>
+</html>

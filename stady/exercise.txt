@@ -1,0 +1,184 @@
+var year = prompt('请输入你出生的年份');
+alert('你今年'+ (2020 - year) + '岁了!')
+var num1 = prompt('请输入第一个值：');
+var num2 = prompt('请输入第二个值：');
+var result = parseFloat(num1)+parseFloat(num2);
+alert('结果为：' + result)
+
+
+var name = prompt('请输入你的姓名：');
+var age = prompt('请输入你的年龄：');
+var sex = prompt('请输入你的性别：');
+alert('你的姓名：'+ String(name) + '\n你的年龄：'+ parseInt(age) + '\n你的性别：' + String(sex))
+
+
+能被4整除且不能整除100的是闰年，能够被400整除的是闰年
+var year = prompt('请输入年份：');
+if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+alert('是闰年')
+} else {
+alert('是平年')
+}
+
+
+var name = prompt('请输入你的姓名：');
+if(name == '刘德华'){
+alert('恭喜你！你中了5元钱')
+}else{
+alert('很遗憾！你没有中奖')
+}
+
+
+用户输入一个0~59之间的数字，如果数字小于10，则在前面补0，比如01，09，如果数字大于10，则不需要补，不如20
+var number = prompt('请输入一个0~59之间的数字：');
+if(59>number>0){
+if(number<10){ 
+    alert(0+number) 
+}else{ 
+    alert(number) 
+}else{ 
+    alert('你输入的数字不在0~59之间或者你输入的不正确') 
+} 
+var result=number < 10 ? '0' +number : number console.log(result) 
+
+
+
+
+
+1，什么是对象？
+在现实生活中：万物皆对象，但是对象必须是一个具体的事物，看得到，摸得着的实物，比如，一本书，一辆汽车，一个人可以是“对象”，一个数据库，一个与远程服务的连接也可以是“对象”。
+比如，明星不是一个对象，明星范围广大，它不是指一个，它指得是一个范围，而周星驰是一个对象，他是一个具体的人，是指一个。
+    苹果也不是一个对象，这个苹果才是一个对象
+
+在Javascript中，对象是一组无序的相关属性和方法的集合，所有的事物都是对象，例如：字符串，数值，数组，函数等
+对象是由属性和方法组成的
+    属性：事物的特征，在对象中用属性来表示（常用名词）
+    方法：事物的行为，在对象中用方法来表示（常用动词）
+比如一个手机：
+    它的大小、颜色、重量、屏幕尺寸、厚度 都是属于属性
+        打电话、发信息、玩游戏、砸核桃 都是属于方法
+
+第一种：
+    创建对象：
+        var obj = {
+            uname : '张三',
+            age : 18,
+            sex : '男',
+            sayHi : function(){
+                console.log('hi~');
+            }
+        }
+    调用对象：
+        console.log(obj.uname)
+        console.log(obj['age'])
+        obj.sayHi()
+
+第二种：
+    创建对象：
+        var obj = new Object();
+        obj.uname = '张三';
+        obj.age = 18;
+        obj.sex = '男'; 
+        obj.sayHi = function(){
+            console.log('hi~');
+        }
+    调用对象：
+        console.log(obj.uname)
+        console.log(obj['age'])
+        obj.sayHi()
+
+第三种：
+    构造函数：就是把我们对象里面一些相同的属性和方法抽象出来封装到函数里面
+    声明函数：
+    function 构造函数名(){   
+        this.属性 = 值;
+        this.方法 = function(){}
+    }
+    调用函数：
+    new 构造函数名();
+
+    1.构造函数名字首字母要大写
+    2.构造函数不需要return 就可以返回数据
+    3.调用构造函数必须使用new关键字 new关键字就相当于return
+    构造函数就是指一大类，比如苹果，不管是红色苹果还是绿色苹果，都统称为苹果
+
+    案例：
+    function Star(uname,age,sex){
+        this.name = uname;
+        this.age = age;
+        this.sex = sex;
+        this.sing = function(sing){
+            console.log(sing);
+        }
+    }
+    var ldh = new Star('刘德华',18,'男');
+    console.log(ldh.name)
+    ldh.sing('冰雨')
+
+
+随机数：
+想要得到两个数之间的随机整数，并且包含这2个整数
+Math.floor(Math.random()*(max-min+1))+min;
+
+function getRandom(min,max){
+    return Math.floor(Math.random()*(max-min+1))+min;
+}
+
+//随机1-10之间的随机数 包括1和10
+console.log(getRandom(1,10))
+
+//随机点名
+var arr = ['张三','李四','王五','李思思','张三丰']
+console.log(arr[getRandom(0,arr.length-1)])
+
+
+计算当前事件距离1970年1月1日过了多少毫秒数
+
+1.通过valueOf() getTime()
+var date = new Date();
+console.log(date.valueOf())
+console.log(date.getTime())
+
+2.简单的写法
+var date1 = +new Date()
+console.log(date1)
+
+3.更简单的写法 H5新增的获取总的毫秒数
+console.log(Date.now())
+
+把时间的总的毫秒数转换为天、时、分、秒（时间戳转换为时分秒）
+var d = parseInt(总秒数 / 60 / 60 / 24)  //天
+var h = parseInt(总秒数 / 60 / 60 % 24)  //时
+var m = parseInt(总秒数 / 60 % 60)  //分
+var s = parseInt(总秒数 % 60)  //当前的秒
+
+//倒计时
+function countDate(time) {
+    var nowTime = +new Date();  //返回的是当前时间总的毫秒数
+    var inputTime = +new Date(time);  //返回的是用户输入时间的总的毫秒数
+    var times = (inputTime - nowTime) / 1000;  //times是剩余时间总的秒数
+
+    var d = parseInt(times / 60 / 60 / 24)  //天
+    d = d < 10 ? '0' + d : d
+    var h = parseInt(times / 60 / 60 % 24)  //时
+    h = h < 10 ? '0' + h : h
+    var m = parseInt(times / 60 % 60)  //分
+    m = m < 10 ? '0' + m : m
+    var s = parseInt(times % 60)  //当前的秒
+    s = s < 10 ? '0' + s : s '分' + s + '秒';
+}
+    return d + '天' + h + '时' + m +
+console.log(countDate('2020-5-21 18:09:00'));
+
+
+数组排序（冒泡排序）
+var arr1 = [13,4,77,1,7]
+arr1.sort(function(a,b){
+    return a - b;  //升序的排序
+    return b - a;  //降序的排序
+})
+console.log(arr1)
+
+
+charCodeAt(index) 返回相应索引号的字符ASCII值，目的：判断用户按下了哪个键，每个键都对应了一个ASCII码，比如小写的a对应的是97
+charAt() 方法可返回指定位置的字符。

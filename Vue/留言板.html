@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        textarea{
+            width: 190px;
+            height: 70px;
+            border: 1px solid black;
+        }
+        ul li{
+           list-style-type: none; 
+           width: 170px;
+           height: 30pxz;
+           background-color: pink;
+           margin-top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <textarea></textarea>
+   <button>发布</button>
+   <ul></ul>
+
+   <script>
+       var text = document.querySelector('textarea')
+        var btn = document.querySelector('button')
+        var ul = document.querySelector('ul')
+        btn.onclick = function(){
+            if(text.value==""){
+                alert('请输入文字')
+                return false
+            }else{
+                var li = document.createElement('li')
+                ul.appendChild(li)
+                li.innerHTML=text.value
+                text.value=''
+            }
+        }
+   </script>
+</body>
+
+</html>

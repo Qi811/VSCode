@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+
+    <style>
+      input {
+        height: 23px;
+      }
+
+      button {
+        height: 25px;
+        width: 50px;
+      }
+
+      ul {
+        margin: 0px;
+        padding: 0px;
+        width: 177px;
+      }
+
+      ul li {
+        list-style-type: none;
+        padding: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="box">
+      <input type="text" placeholder="请输入关键字" v-model="value" />
+      <button>搜索</button>
+
+      <ul>
+        <li
+          v-for="(date,index) in getDateList"
+          @mouseover.stop="onmove()"
+          :style="Move"
+          @mouseleave="onleave"
+        >
+          {{date}}
+        </li>
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+      var vm = new Vue({
+        el: "#box",
+        data: {
+          value: "",
+          dateList: ["aaa", "bbb", "ccc", "aab", "abb", "bba", "ccb", "acc"],
+          // dateList_2: ["aaa", "bbb", "ccc", "aab", "abb", "bba", "ccb", "acc"],
+          Move: "",
+        },
+        methods: {
+          /* handInput: function () {
+            console.log(this.value);
+            var newList = this.dateList_2.filter(
+              (item) => item.indexOf(this.value) > -1
+            );
+            this.dateList = newList;
+          }, */
+          onmove: function () {
+            this.Move = "background-color: gray";
+          },
+          onleave: function () {
+            this.Move = "";
+          },
+        },
+        computed: {
+          getDateList() {
+            return this.dateList.filter(
+              (item) => item.indexOf(this.value) > -1
+            );
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

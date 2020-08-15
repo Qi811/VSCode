@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>轮播图</title>
+    <link type="text/css" rel="styleSheet" href="../wyy/发现.css" />
+  </head>
+  <body>
+    <div id="headFx">
+      <div id="headFxlbt">
+        <ul id="lbt">
+          <li id="ltb_im">
+            <img id="im" src="../wyy/img/mjq_1.jpg" alt="" />
+          </li>
+          <li id="ltb_im">
+            <img id="im" src="../wyy/img/mjq_2.jpg" alt="" />
+          </li>
+          <li id="ltb_im">
+            <img id="im" src="../wyy/img/yhx_1.jpg" alt="" />
+          </li>
+          <li id="ltb_im">
+            <img id="im" src="../wyy/img/yhx_2.jpg" alt="" />
+          </li>
+          <li id="ltb_im">
+            <img id="im" src="../wyy/img/yhx_3.jpg" alt="" />
+          </li>
+        </ul>
+      </div>
+      <div id="dd">
+        <ul id="ddul">
+          <li id="ddli"></li>
+          <li id="ddli"></li>
+          <li id="ddli"></li>
+          <li id="ddli"></li>
+          <li id="ddli"></li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      var im = document.querySelectorAll("#im");
+      var ddli = document.querySelectorAll("#ddli");
+      var ddul = document.getElementById("ddul");
+      var headfx = document.getElementById("headfx");
+      var num = 0;
+      im[0].style.display = "block";
+      ddli[0].style.background = "gray";
+      function ChangImg() {
+        num++;
+        if (num >= im.length) {
+          num = 0;
+        }
+        for (var i = 0; i < im.length; i++) {
+          im[i].style.display = "none";
+          ddli[i].style.background = "#eeeeee";
+        }
+        im[num].style.display = "block";
+        ddli[num].style.background = "gray";
+      }
+      setInterval(() => {
+        ChangImg();
+      }, 4000);
+    </script>
+  </body>
+</html>

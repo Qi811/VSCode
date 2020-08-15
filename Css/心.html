@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<body>
+  <head>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        background-color: cadetblue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      div {
+        width: 200px;
+        height: 200px;
+        background-color: aqua;
+        transform: rotate(45deg);
+      }
+      div::before,
+      div::after {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        background-color: aqua;
+        border-radius: 50%;
+      }
+      div::before {
+        content: "";
+        transform: translateX(-100px);
+      }
+      div::after {
+        content: "";
+        transform: translateY(-100px);
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</body>

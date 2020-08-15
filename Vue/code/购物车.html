@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+      #box {
+        width: 500px;
+        height: 200px;
+      }
+      .one {
+        width: 500px;
+        height: 30px;
+      }
+      input {
+        border-radius: 50%;
+        border: 1px solid black;
+        margin-left: 5px;
+        display: inline;
+        display: inline-block;
+      }
+      .store_img {
+        font-weight: bold;
+        display: inline;
+        display: inline-block;
+      }
+      .header {
+        font-weight: bold;
+        display: inline;
+        display: inline-block;
+      }
+      .leftbra {
+        border: 1px solid rgb(121, 119, 119);
+        width: 8px;
+        height: 8px;
+        border-left: hidden;
+        border-top: hidden;
+        transform: rotate(315deg);
+        display: inline;
+        display: inline-block;
+      }
+      .two {
+        width: 500px;
+        height: 100px;
+        background-color: azure;
+        /* position: relative; */
+      }
+      .check_2 {
+        position: absolute;
+        margin-top: 50px;
+        display: inline;
+        display: inline-block;
+      }
+      .img {
+        width: 100px;
+        height: 99px;
+        border: 1px solid black;
+        display: inline;
+        display: inline-block;
+        margin-left: 30px;
+      }
+      .rightBody {
+        width: 360px;
+        height: 100px;
+        background-color: peachpuff;
+        display: inline;
+        display: inline-block;
+        margin-left: 8px;
+        float: right;
+      }
+      .content {
+        width: 360px;
+        height: 100px;
+        float: right;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 15px;
+      }
+      .three {
+        width: 350px;
+        height: 50px;
+        margin-left: 150px;
+        margin-top: 20px;
+      }
+      .price {
+        display: inline;
+        display: inline-block;
+      }
+      .price_num {
+        display: inline;
+        display: inline-block;
+      }
+      .btn {
+        margin-right: 20px;
+        float: right;
+        display: inline;
+        display: inline-block;
+        border: 1px solid black;
+      }
+      .few,
+      .add {
+        display: inline;
+        display: inline-block;
+        width: 30px;
+        height: 20px;
+        text-align: center;
+        background-color: white;
+        border: none;
+        text-decoration: none;
+        outline: none; /* 按钮点击之后去除边框 */
+      }
+      .num {
+        display: inline;
+        display: inline-block;
+        width: 30px;
+        height: 20px;
+        width: 50px;
+        text-align: center;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        line-height: 1.3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div>
+        是否全选：
+        <input
+          type="checkbox"
+          class="check_1"
+          v-model="isActive"
+          @change="handlInput_1()"
+        />
+      </div>
+      <span v-for="data in shoppingList">
+        <!-- <div class="one">
+          <input type="checkbox" class="check_1" />
+          <div class="store_img">【店铺图片】</div>
+          <div class="header">{{data.store}}</div>
+          <div class="leftbra"></div>
+        </div> -->
+        <div class="two">
+          <input
+            type="checkbox"
+            class="check_2"
+            v-model="btnList"
+            :value="data"
+            @change="handlInput_2()"
+          />
+          <div class="img">图片</div>
+          <div class="rightBody">
+            <div class="content">
+              {{data.content}} {{btnList}}
+            </div>
+          </div>
+        </div>
+        <div class="three">
+          <div class="price">价格：</div>
+          <div class="price_num">{{data.price}}</div>
+          <div class="btn">
+            <button class="few" @click="handlFew(data)" :style="few">-</button>
+            <div class="num">{{data.num}}</div>
+            <button class="add" @click="data.num++">+</button>
+          </div>
+        </div>
+      </span>
+      <div>
+        总金额：{{getSum()}}
+      </div>
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el: "#box",
+        data: {
+          shoppingList: [
+            {
+              id: 1,
+              store: "KONO洗护旗舰店",
+              content:
+                "【狂欢价】KONO洗发水控油清洁止痒蓬松香味持久留香洗发膏男女士正品500ml",
+              price: 89,
+              num: 1,
+            },
+            {
+              id: 2,
+              store: "sweetycube旗舰店",
+              content:
+                "【狂欢价】Intous葡糖籽镁光白原花青素分vc片维生素C焕白山楂即食咀嚼片",
+              price: 39.8,
+              num: 1,
+            },
+            {
+              id: 3,
+              store: "蔷薇美肌",
+              content:
+                "韩国新版原装进口 its skin伊思能量10精华原液30ml GF VC WH蜂胶",
+              price: 49.99,
+              num: 1,
+            },
+            {
+              id: 4,
+              store: "谷雨化妆品旗舰店",
+              content:
+                "谷雨洁面氨基酸洗面奶敏感肌清洁温和 慕斯泡沫卸妆带刷头男女",
+              price: 76.9,
+              num: 1,
+            },
+          ],
+          btnList: [],
+          isActive: false,
+          few: "",
+        },
+        methods: {
+          handlFew(data) {
+            var num = data.num--;
+            if (num === 1) {
+              data.num = 1;
+            }
+          },
+          getSum() {
+            var sum = 0;
+            for (var i in this.btnList) {
+              sum += this.btnList[i].num * this.btnList[i].price;
+            }
+            return sum;
+          },
+          handlInput_1() {
+            console.log("改变了", this.isActive);
+            if (this.isActive) {
+              this.btnList = this.shoppingList;
+            } else {
+              this.btnList = [];
+            }
+          },
+          handlInput_2() {
+            if (this.btnList.length === this.shoppingList.length) {
+              this.isActive = true;
+            } else {
+              this.isActive = false;
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
